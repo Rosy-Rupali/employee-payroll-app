@@ -50,18 +50,18 @@ const createEmployeePayroll = () => {
     employeePayrollData.note = getInputValueById('#notes');
     let date = getInputValueById('#day')+ " " + getInputValueById('#month')+ " " + getInputValueById('#year');
     console.log(date);
-    employeePayrollData.startDate = Date.parse(date);
+    employeePayrollData.startDate = new Date(Date.parse(date));
 
     alert(employeePayrollData.toString());
     return employeePayrollData;
 }
 const getSelectedValues = (propertyValue) => {
     let allItems = document.querySelectorAll(propertyValue);
-    let selectedItems = [];
+    let setItems = [];
     allItems.forEach(item => {
-        if (item.checked) selectedItems.push(item.value);
+        if (item.checked) setItems.push(item.value);
     });
-    return selectedItems;
+    return setItems;
 }
 /*
  *1: querySelector is newer feature.
@@ -84,4 +84,32 @@ function createAndUpdateStorage(employeePayrollData){
     }
     alert(employeePayrollList.toString());
     localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
+}
+//UC13 Reset the values of the page
+const resetForm = () => {
+    setValue('#name', ' ');
+    unsetSelectedValues('[name=profile]');
+    unsetSelectedValues('[name=gender]');
+    unsetSelectedValues('[name=department]');
+    setValue('#salary', ' ');
+    setValue('#notes', ' ');
+    setValue('#day', '1');
+    setValue('#month', 'January');
+    setValue('#year', '2020');
+}
+
+const unsetSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        item.checked = false;
+    });
+}
+const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
+}
+
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
 }
