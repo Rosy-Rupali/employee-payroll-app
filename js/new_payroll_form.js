@@ -29,6 +29,7 @@ salary.addEventListener('input', function(){
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
@@ -47,8 +48,10 @@ const createEmployeePayroll = () => {
     employeePayrollData.department = getSelectedValues('[name=department]');
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.note = getInputValueById('#notes');
-    let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
-    employeePayrollData.date = Date.parse(date);
+    let date = getInputValueById('#day')+ " " + getInputValueById('#month')+ " " + getInputValueById('#year');
+    console.log(date);
+    employeePayrollData.startDate = Date.parse(date);
+
     alert(employeePayrollData.toString());
     return employeePayrollData;
 }
@@ -69,7 +72,16 @@ const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
 }
-const getInputElementValue = (id) => {
-    let value = document.getElementById(id).value;
-    return value;
+/**
+ * UC12 to save the Employee Payroll Object to Local Storage.
+ */
+function createAndUpdateStorage(employeePayrollData){
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if(employeePayrollList != undefined){
+        employeePayrollList.push(employeePayrollData);
+    }else{
+        employeePayrollList = [employeePayrollData]
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
 }
