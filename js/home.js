@@ -8,8 +8,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const createInnerHtml = () => {
     const headerHtml = "<th></th><th>Name</th><th>Gender</th><th>Department</th>"+
     "<th>Salary</th><th>Start Date</th><th>Actions</th>";
-    let employeePayrollData = createEmployeePayrollJSON[0];
-    const innerHtml = `${headerHtml}
+    let innerHtml = `${headerHtml}`;
+    let empPayrollList = createEmployeePayrollJSON();
+    for(const employeePayrollData of empPayrollList){
+        innerHtml = `${innerHtml}
     <tr>
     <td><img class="profile" src="${employeePayrollData._profilePic}" alt=""></td>
     <td>${employeePayrollData._name}</td>
@@ -23,6 +25,7 @@ const createInnerHtml = () => {
     </td>
     </tr>
     `;
+    }
     document.querySelector('#table-display').innerHTML = innerHtml;
 }
 
