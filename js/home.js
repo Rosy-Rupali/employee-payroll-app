@@ -1,5 +1,5 @@
 /**
- * UC 4 Using Template Literals in the employee payroll details
+ * Using Template Literals in the employee payroll details
  */
 window.addEventListener('DOMContentLoaded', (event) => {
     createInnerHtml();
@@ -17,7 +17,7 @@ const createInnerHtml = () => {
     <td>${employeePayrollData._name}</td>
     <td>${employeePayrollData._gender}</td>
     <td>${getDeptHtml(employeePayrollData._department)}</td>
-    <td>${employeePayrollData._salary}/td>
+    <td>${employeePayrollData._salary}</td>
     <td>${employeePayrollData._startDate}</td>
     <td>
         <img src="../assets/assets/icons/delete-black-18dp.svg" alt="delete" name="${employeePayrollData._id}" onclick="remove(this)">
@@ -38,10 +38,10 @@ const getDeptHtml = (deptList) => {
 }
 
 const createEmployeePayrollJSON = () => {
-    let employeePayrollListLocal = [
+    let empPayrollListLocal = [
         {
             _name : 'Anshul Singh',
-            _gender : 'male',
+            _gender : 'Male',
             _department : [
                 'Engineering',
                 'Finance'
@@ -50,11 +50,11 @@ const createEmployeePayrollJSON = () => {
             _startDate: '29 Oct 2019',
             _note: '',
             _id: new Date().getTime(),
-            _profilePic: 'D:\RFP\EmployeePayrollApp\assets\assets\profile-images\Ellipse -2.png'
+            _profilePic: '../assets/assets/profile-images/Ellipse -2.png'
         },
         {
             _name : 'Aparna Shekhar',
-            _gender : 'female',
+            _gender : 'Female',
             _department : [
                 'Sales',
             ],
@@ -62,8 +62,8 @@ const createEmployeePayrollJSON = () => {
             _startDate: '12 June 2019',
             _note: '',
             _id: new Date().getTime(),
-            _profilePic: 'D:\RFP\EmployeePayrollApp\assets\assets\profile-images\Ellipse -1.png'   
+            _profilePic: '../assets/assets/profile-images/Ellipse -1.png'   
         }
     ];
-    return employeePayrollListLocal;
+    return empPayrollListLocal;
 }
