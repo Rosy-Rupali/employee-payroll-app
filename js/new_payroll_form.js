@@ -40,8 +40,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
             setTextValue(".date-error", e);
         }
     });
-
-    checkForUpdate();
 });
 
 
@@ -52,6 +50,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
  const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        alert(createEmployeePayroll());
         createAndUpadateStorage(employeePayrollData);
     } catch (e) {
         return;
